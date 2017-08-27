@@ -26,12 +26,17 @@ wordRoutes.get("/newgame", function (req, res) {
     }
     console.log("turns = ", game.turns);
     req.session.game = game;
-    return res.render("index", game); //don't pass the session
+    return res.render("index", game);
 });
+
+
+
 //this stores the guess and compares it to the random word
 wordRoutes.post("/guess", (req, res) => {
     let game = req.session.game; //game is assigned FROM session
-    let guessLetter = req.body.letterGuess // this is where the letter is 
+    let guessLetter = req.body.letterGuess.toUpperCase()// this is where the letter is entered in the form
+
+
     if (alreadyGuessed(game, guessLetter)) {
         saveGame(req, game, "Already guessed");
     }
@@ -56,10 +61,11 @@ wordRoutes.post("/guess", (req, res) => {
         game.wrongGuesses.push(guessLetter);
         game.turns -= 1 //decrement turns
         saveGame(req, game, "WRONG"); //setting session game = to local game/game is put into session
-        // return res.redirect("/");
+
     }
-    return res.render("index", game); //this fixed my problem: I changed from redirect, to render and passed through the session data to return to the page
+    return res.render("index", game);
 });
+
 //redirect takes user to another page a RESTARTS the request
 //render simply takes them to the page, and loadst he data, in this case the session
 function saveGame(req, game, message) {
