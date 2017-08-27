@@ -1,7 +1,8 @@
-const indexRoutes = require("indexRoutes");
+const indexRoutes = require("./routes/indexRoutes");
+const wordRoutes = require("./routes/wordRoutes");
 const express = require("express");
 const bodyParser = require("body-parser");
-const session = require("session");
+const session = require("express-session");
 const mustacheExpress = require("mustache-express");
 const logger = require("morgan");
 const sessionConfig = require("./sessionConfig");
@@ -21,6 +22,13 @@ app.use(logger("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session(sessionConfig));
 
+//ROUTES
+app.use("/", indexRoutes);
+app.use("/word", wordRoutes);
+
+// app.get("/", (req, res) => {
+//     res.render("index", req.session)
+// });
 
 app.listen(port, () => {
     console.log(`running on port: ${port}`);
