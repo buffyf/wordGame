@@ -22,7 +22,7 @@ wordRoutes.get("/newgame", function (req, res) {
     game.correctGuesses = [];
     game.turns = 8;
     for (let i = 0; i < game.word.length; i++) {
-        game.displayArray.push("__");
+        game.displayArray.push("_");
     }
     console.log("turns = ", game.turns);
     req.session.game = game;

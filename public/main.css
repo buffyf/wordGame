@@ -1,0 +1,85 @@
+body {
+    margin: 0;
+    font-family: 'Fredericka the Great', cursive;
+    /* font-family: 'Permanent Marker', cursive;
+font-family: 'Cabin Sketch', cursive;
+font-family: 'Fredericka the Great', cursive; */
+}
+
+.title {
+    text-align: center;
+}
+
+.newGame {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    background: url(chalk-clip-art-45.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 800px;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    margin: 10px 275px;
+}
+
+.board {
+    margin-top: 50px;
+    width: 700px;
+}
+
+.letterGuess {
+    font-family: 'Cabin Sketch', cursive;
+    color: white;
+    font-size: 4rem;
+}
+
+.board-header {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.turns {
+    font-family: 'Fredericka the Great', cursive;
+    color: white;
+    font-size: 1.5rem;
+    float: right;
+    margin-right: 41px;
+    border: 2px dashed;
+    padding: 8px;
+}
+
+.wrong {
+    font-family: 'Fredericka the Great', cursive;
+    color: white;
+    font-size: 1.5rem;
+    border: 2px dashed;
+    padding: 8px;
+    margin-left: 11px;
+}
+
+.wrong-letter-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: -60px;
+    width: 400px;
+    text-align: left
+}
+
+.wrong-letter {
+    font-family: 'Cabin Sketch', cursive;
+    color: white;
+    font-size: 1.5rem;
+    text-align: left;
+    margin-top: 55px;
+}
+
+.no-guess {
+    font-family: 'Cabin Sketch', cursive;
+    color: white;
+    font-size: 1rem;
+    margin: -15px 45px 20px;
+}

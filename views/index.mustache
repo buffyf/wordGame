@@ -6,34 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Word Game</title>
+    <link href="https://fonts.googleapis.com/css?family=Cabin+Sketch|Fredericka+the+Great|Permanent+Marker" rel="stylesheet">
     <link rel="stylesheet" href="/main.css">
 </head>
 
 <body>
-    <h1>Word Game</h1>
-    <div>
-        <form action="/word/newgame" method="GET">
-            <button type="submit">New Game!</button>
-
+    <div class="title-container">
+        <h1 class="title">Word Game</h1>
+        <div>
+            <form class="newGame" action="/word/newgame" method="GET">
+                <button type="submit">New Game!</button>
+        </div>
         </form>
     </div>
-
-    <form action="/word/guess" method="POST">
-        <input type="text" name="letterGuess" placeholder="Guess A Letter" maxlength=1 required>
-        <button type="submit">Guess</button> {{#word}}
-        <div>
-
-            <h2>{{#message}}{{.}}{{/message}}</h2>
+    <div class="container">
+        <div class="board">
             {{#turns}}
-            <h5>Turns: {{.}}</h5>{{/turns}}
-        </div>
-        <div>
-            <h3>{{#displayArray}}<span class="letter"> {{.}} </span>{{/displayArray}}</h3>
-        </div>
+            <h2 class="turns">Turns Left: {{.}}</h2>{{/turns}}
+            <div class="board-header">
+                <h2 class="wrong">Wrong Guesses:</h2><br>
+            </div>
+            <div class="wrong-letter-container">
+                <p class="wrong-letter">{{#wrongGuesses}}{{.}}&nbsp;{{/wrongGuesses}}</p>
+            </div>
+            <p class="no-guess">{{^wrongGuesses}}No Guesses Yet {{/wrongGuesses}}</p>
+            <form action="/word/guess" method="POST">
+                <div>
+                    <h3>{{#displayArray}}<span class="letterGuess"> {{.}} </span>{{/displayArray}}</h3>
+                </div>
+                <input type="text" name="letterGuess" placeholder="Guess A Letter" maxlength=1 required>
+                <button type="submit">Guess</button> {{#word}}
 
-        <h6>Wrong Guesses</h6>
-        {{#wrongGuesses}}{{.}}{{/wrongGuesses}} {{^wrongGuesses}}No Guesses Yet {{/wrongGuesses}} {{/word}}
-    </form>
+
+            </form>
+        </div>
+    </div>
+    {{/word}}
 </body>
 
 </html>
