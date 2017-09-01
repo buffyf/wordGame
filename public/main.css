@@ -1,6 +1,7 @@
 body {
     margin: 0;
     font-family: 'Fredericka the Great', cursive;
+    background-color: lightgray;
     /* font-family: 'Permanent Marker', cursive;
 font-family: 'Cabin Sketch', cursive;
 font-family: 'Fredericka the Great', cursive; */
@@ -8,33 +9,38 @@ font-family: 'Fredericka the Great', cursive; */
 
 .title {
     text-align: center;
+    color: green;
+    font-size: 3rem;
 }
 
 .newGame {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    color: blue;
+    font-size: 1.5rem;
+    margin-bottom: 8px;
 }
 
 .container {
-    background: url(chalk-clip-art-45.png);
+    background: url(chalkboard.png);
     background-size: 100%;
     background-repeat: no-repeat;
-    width: 800px;
-    height: 800px;
+    width: 1000px;
+    height: 900px;
     display: flex;
     justify-content: center;
-    margin: 10px 275px;
+    margin: 16px 150px;
 }
 
 .board {
     margin-top: 50px;
-    width: 700px;
+    width: 800px;
 }
 
 .letterGuess {
     font-family: 'Cabin Sketch', cursive;
     color: white;
-    font-size: 4rem;
+    font-size: 3.5rem;
 }
 
 .board-header {
@@ -75,6 +81,7 @@ font-family: 'Fredericka the Great', cursive; */
     font-size: 1.5rem;
     text-align: left;
     margin-top: 55px;
+    margin-left: 25px;
 }
 
 .no-guess {
@@ -82,4 +89,42 @@ font-family: 'Fredericka the Great', cursive; */
     color: white;
     font-size: 1rem;
     margin: -15px 45px 20px;
+}
+
+.guessbox {
+    width: 150px;
+    color: white;
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 1.5rem;
+    padding: 10px;
+    margin-bottom: 110px;
+}
+
+.guess {
+    width: 50px;
+    background-color: transparent;
+    color: white;
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 1.5rem;
+    padding: 10px;
+    border: 2px dashed white;
+    margin: 13px 0px 70px 56px;
+}
+
+.guess:outline {
+    display: none;
+}
+
+.guess::placeholder {
+    color: white;
+    font-size: 1rem;
+}
+
+.guessButton {
+    display: none;
+}
+
+.message {
+    color: red;
+    float: right;
 }

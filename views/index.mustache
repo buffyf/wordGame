@@ -13,30 +13,36 @@
 <body>
     <div class="title-container">
         <h1 class="title">Word Game</h1>
-        <div>
-            <form class="newGame" action="/word/newgame" method="GET">
-                <button type="submit">New Game!</button>
-        </div>
-        </form>
+
     </div>
     <div class="container">
         <div class="board">
-            {{#turns}}
-            <h2 class="turns">Turns Left: {{.}}</h2>{{/turns}}
-            <div class="board-header">
-                <h2 class="wrong">Wrong Guesses:</h2><br>
-            </div>
-            <div class="wrong-letter-container">
-                <p class="wrong-letter">{{#wrongGuesses}}{{.}}&nbsp;{{/wrongGuesses}}</p>
-            </div>
-            <p class="no-guess">{{^wrongGuesses}}No Guesses Yet {{/wrongGuesses}}</p>
+            <form action="/newgame" method="GET">
+
+                <div>
+                    <button type="submit" class="newGame">Click for New Game!</button>
+                </div>
+            </form>
+
+            <h2 class="message">{{#message}}{{.}}{{/message}}</h2>
             <form action="/word/guess" method="POST">
+                <div class="input">
+                    <label class="guessbox" for="Guess A Letter">Guess A Letter:</label><br>
+                    <input class="guess" type="text" name="letterGuess" maxlength=1 pattern="[a-z]" required>
+                    <button class="guessButton" type="submit">Guess</button>
+                </div>
                 <div>
                     <h3>{{#displayArray}}<span class="letterGuess"> {{.}} </span>{{/displayArray}}</h3>
                 </div>
-                <input type="text" name="letterGuess" placeholder="Guess A Letter" maxlength=1 required>
-                <button type="submit">Guess</button> {{#word}}
-
+                {{#word}} {{#turns}}
+                <h2 class="turns">Turns Left: {{.}}</h2>{{/turns}}
+                <div class="board-header">
+                    <h2 class="wrong">Wrong Guesses:</h2><br>
+                </div>
+                <div class="wrong-letter-container">
+                    <p class="wrong-letter">{{#wrongGuesses}}{{.}}&nbsp;{{/wrongGuesses}}</p>
+                </div>
+                <p class="no-guess">{{^wrongGuesses}}{{/wrongGuesses}}</p>
 
             </form>
         </div>

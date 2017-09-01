@@ -1,5 +1,6 @@
 const indexRoutes = require("./routes/indexRoutes");
 const wordRoutes = require("./routes/wordRoutes");
+const newgameRoutes = require("./routes/newgameRoutes");
 const express = require("express");
 const bodyParser = require("body-parser");
 const session = require("express-session");
@@ -25,10 +26,9 @@ app.use(session(sessionConfig));
 //ROUTES
 app.use("/", indexRoutes);
 app.use("/word", wordRoutes);
+app.use("/newgame", newgameRoutes);
 
-// app.get("/", (req, res) => {
-//     res.render("index", req.session)
-// });
+
 
 app.listen(port, () => {
     console.log(`running on port: ${port}`);

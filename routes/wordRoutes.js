@@ -1,33 +1,15 @@
 const express = require("express");
 const wordRoutes = express.Router();
-const fs = require("fs");
-const words = fs.readFileSync("/usr/share/dict/words", "utf-8").toUpperCase().split("\n");
 const session = require("express-session");
+const newgameRoutes = express.Router();
+
 
 
 ///////////////////////
 ///////////////////////
 ///////////////////////
 
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-}
-let randomWord = words[getRandomInt(0, words.length - 1)];
-console.log(randomWord);
-wordRoutes.get("/newgame", function (req, res) {
-    let game = {};
-    game.word = randomWord;
-    game.displayArray = [];
-    game.wrongGuesses = [];
-    game.correctGuesses = [];
-    game.turns = 8;
-    for (let i = 0; i < game.word.length; i++) {
-        game.displayArray.push("_");
-    }
-    console.log("turns = ", game.turns);
-    req.session.game = game;
-    return res.render("index", game);
-});
+
 
 
 
@@ -35,34 +17,43 @@ wordRoutes.get("/newgame", function (req, res) {
 wordRoutes.post("/guess", (req, res) => {
     let game = req.session.game; //game is assigned FROM session
     let guessLetter = req.body.letterGuess.toUpperCase()// this is where the letter is entered in the form
+    let randomWord = req.session.game.word;
 
 
     if (alreadyGuessed(game, guessLetter)) {
         saveGame(req, game, "Already guessed");
     }
-    for (i = 0; i < game.word.length; i++) {
-        if (game.word.charAt(i) === guessLetter) {
-            game.displayArray[i] = guessLetter;
-            console.log("this is the array: ", game.displayArray);
-        }
-    }
 
-    let locationOfLetter = randomWord.indexOf(guessLetter) //location of letter
-    if (randomWord.includes(guessLetter) == true) {
-        game.displayArray.splice(locationOfLetter, 1, guessLetter);
-    }
-    if (game.displayArray.join('') == randomWord) {
-        res.send("You've Won!")
-    }
-    if (game.turns < 2) {
-        res.send("You Loose!");
-    }
-    if (letterNotFound(game, guessLetter)) {
+    else if (letterNotFound(game, guessLetter)) {
         game.wrongGuesses.push(guessLetter);
         game.turns -= 1 //decrement turns
         saveGame(req, game, "WRONG"); //setting session game = to local game/game is put into session
 
+    } else {
+
+        for (i = 0; i < game.word.length; i++) {
+            if (game.word.charAt(i) === guessLetter) {
+                game.displayArray[i] = guessLetter;
+                console.log("this is the array: ", game.displayArray);
+            }
+        }
+
+        let locationOfLetter = randomWord.indexOf(guessLetter) //location of letter
+        if (randomWord.includes(guessLetter) == true) {
+            game.displayArray.splice(locationOfLetter, 1, guessLetter);
+            saveGame(req, game, "Correct!");
+
+
+        }
+    };
+    if (game.displayArray.join('') === randomWord) {
+        saveGame(req, game, "You Win");
+
     }
+    if (game.turns < 1) {
+        saveGame(req, game, `You Loose!, the word was ${randomWord}`);
+    }
+
     return res.render("index", game);
 });
 
