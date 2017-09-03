@@ -11,21 +11,75 @@
 </head>
 
 <body>
-    <div class="title-container">
-        <h1 class="title">Word Game</h1>
 
-    </div>
+
+
+    <form class="newGame-parent" action="/newgame" method="GET">
+
+        <div>
+            <button type="submit" class="newGame">Click for New Game!</button>
+        </div>
+    </form>
     <div class="container">
         <div class="board">
-            <form action="/newgame" method="GET">
-
-                <div>
-                    <button type="submit" class="newGame">Click for New Game!</button>
+            <div class="title-container">
+                <div style="transform: rotate(9deg); margin-top: 13px" class="flag">
+                    <p style="transform: rotate(3deg); margin-top: 2px" class="title">M</p>
                 </div>
-            </form>
+                <div style="transform: rotate(8deg); margin-top: 22px" class="flag">
+                    <p style="transform: rotate(3deg); margin-top: 2px" class="title">Y</p>
+                </div>
+                <div style="transform: rotate(7deg); margin-top: 30px" class="flag">
+                    <p style="transform: rotate(3deg); margin-top: 2px" class=" title ">S</p>
+                </div>
+                <div style="transform: rotate(6deg); margin-top: 37px" class="flag">
+                    <p style="transform: rotate(3deg); margin-top: 2px" class=" title ">T</p>
+                </div>
+                <div style="transform: rotate(5deg); margin-top: 43px" class="flag">
+                    <p style="transform: rotate(3deg); margin-top: 2px" class=" title ">E</p>
+                </div>
+                <div style="transform: rotate(4deg); margin-top: 47px" class="flag">
+                    <p style="transform: rotate(3deg); margin-top: 2px" class=" title ">R</p>
+                </div>
+                <div style="transform: rotate(3deg); margin-top: 51px" class="flag">
+                    <p style="transform: rotate(3deg); margin-top: 2px" class=" title ">Y</p>
+                </div>
+                <div style="transform: rotate(2deg); margin-top: 54px" class="flag">
+                    <p style="transform: rotate(3deg); margin-top: 2px" class=" title ">&nbsp;</p>
+                </div>
+                <div style="transform: rotate(0deg); margin-top: 55px" class="flag">
+                    <p style="transform: rotate(3deg); margin-top: 2px" class="title">W</p>
+                </div>
+                <div style="transform: rotate(-2deg); margin-top: 54px" class="flag">
+                    <p style="transform: rotate(3deg); margin-top: 2px" class="title">O</p>
+                </div>
+                <div style="transform: rotate(-3deg); margin-top: 51px" class="flag">
+                    <p style="transform: rotate(3deg); margin-top: 2px" class=" title ">R</p>
+                </div>
+                <div style="transform: rotate(-4deg); margin-top: 47px" class="flag">
+                    <p style="transform: rotate(3deg); margin-top: 2px" class=" title ">D</p>
+                </div>
+                <div style="transform: rotate(-5deg); margin-top: 43px" class="flag">
+                    <p style="transform: rotate(3deg); margin-top: 2px" class=" title ">&nbsp;</p>
+                </div>
+                <div style="transform: rotate(-6deg); margin-top: 37px" class="flag">
+                    <p style="transform: rotate(3deg); margin-top: 2px" class=" title ">G</p>
+                </div>
+                <div style="transform: rotate(-7deg); margin-top: 30px" class="flag">
+                    <p style="transform: rotate(3deg); margin-top: 2px" class=" title ">A</p>
+                </div>
+                <div style="transform: rotate(-8deg); margin-top: 22px" class="flag">
+                    <p style="transform: rotate(3deg); margin-top: 2px" class=" title ">M</p>
+                </div>
+                <div style="transform: rotate(-9deg); margin-top: 13px" class="flag">
+                    <p style="transform: rotate(3deg); margin-top: 2px" class=" title ">E</p>
+                </div>
+
+
+            </div>
 
             <h2 class="message">{{#message}}{{.}}{{/message}}</h2>
-            <form action="/word/guess" method="POST">
+            <form class="form" action="/word/guess" method="POST">
                 <div class="input">
                     <label class="guessbox" for="Guess A Letter">Guess A Letter:</label><br>
                     <input class="guess" type="text" name="letterGuess" maxlength=1 pattern="[a-z]" required>
